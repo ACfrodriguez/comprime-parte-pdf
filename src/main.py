@@ -37,7 +37,7 @@ from .usage_store import (
 # Punto de entrada HTTP: endpoints, middleware y registro de handlers.
 app = FastAPI(
     title="PDF Compression API",
-    version="1.0.0",
+    version="1.0.1",
     description="API FastAPI para comprimir PDFs con Adobe PDF Services.",
 )
 

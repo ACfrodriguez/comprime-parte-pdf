@@ -16,6 +16,7 @@
   <p align="center">
     API interna para recibir un PDF, comprimirlo con Adobe y devolver el archivo resultante con logging y alertas por correo.
   </p>
+  <img src="assets/img/DashboardCaptura.png" alt="Portada del dashboard ApiCPdf" />
 </div>
 
 <details>
@@ -405,4 +406,4 @@ Si Gmail esta configurado, se envia un email cuando:
 [python-shield]: https://img.shields.io/badge/Python-3.11+-3776AB?style=for-the-badge&logo=python&logoColor=white
 [fastapi-shield]: https://img.shields.io/badge/FastAPI-API-009688?style=for-the-badge&logo=fastapi&logoColor=white
 [adobe-shield]: https://img.shields.io/badge/Adobe-PDF_Services-FA0F00?style=for-the-badge&logo=adobe&logoColor=white
-[version-shield]: https://img.shields.io/badge/version-v1.0.0-blue?style=for-the-badge
+[version-shield]: https://img.shields.io/badge/version-v1.0.1-blue?style=for-the-badge
