@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard ApiCPdf</title>
+  <link rel="stylesheet" href="/dashboard/style.css">
+</head>
+<body class="auth-page">
+  <main class="card auth-card">
+    <h1>Dashboard</h1>
+    <p>Accede con tu token para ver metricas y gestionar cuentas Adobe.</p>
+    __MESSAGE__
+    __DISABLED_NOTE__
+    <form method="post" action="/dashboard/login">
+      <label for="token">Token</label>
+      <input id="token" name="token" type="password" autocomplete="current-password" required />
+      <button type="submit">Entrar</button>
+    </form>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+  <script>
+    window.addEventListener("load", () => {
+      if (!window.gsap) return;
+      gsap.from(".auth-card", {
+        autoAlpha: 0,
+        y: 28,
+        duration: 0.7,
+        ease: "power3.out"
+      });
+      gsap.from(".auth-card h1, .auth-card p, .auth-card form", {
+        autoAlpha: 0,
+        y: 14,
+        duration: 0.55,
+        stagger: 0.08,
+        delay: 0.12,
+        ease: "power2.out"
+      });
+      gsap.from(".auth-card button", {
+        autoAlpha: 0,
+        y: 10,
+        duration: 0.45,
+        delay: 0.28,
+        ease: "power2.out"
+      });
+    });
+  </script>
+</body>
+</html>

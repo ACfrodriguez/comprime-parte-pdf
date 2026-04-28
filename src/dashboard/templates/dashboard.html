@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard ApiCPdf</title>
+  <link rel="stylesheet" href="/dashboard/style.css">
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <div>
+        <h1>Adobe Dashboard</h1>
+        <p>Alta y baja de cuentas, metricas de uso y estado operativo del servicio en una sola vista.</p>
+      </div>
+      <div class="actions">
+        <form method="post" action="/dashboard/logout" style="margin:0;">
+          <button class="ghost" type="submit">Cerrar sesion</button>
+        </form>
+      </div>
+    </section>
+
+    __NOTICES__
+
+    <section class="grid">
+      <div class="metric"><span>Uso total</span><strong>__USED__</strong></div>
+      <div class="metric"><span>Maximo</span><strong>__MAX__</strong></div>
+      <div class="metric"><span>Restante</span><strong>__REMAINING__</strong></div>
+      <div class="metric"><span>Cuentas activas</span><strong>__ACCOUNTS_COUNT__</strong></div>
+    </section>
+
+    <section class="content">
+      <div class="panel">
+        <h2 style="margin-top:0;">Cuentas</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Email</th>
+              <th>Hoy</th>
+              <th>Mes</th>
+              <th>Rest. mes</th>
+              <th>Max.</th>
+              <th>Disponible</th>
+              <th>Accion</th>
+            </tr>
+          </thead>
+          <tbody>
+            __ACCOUNT_ROWS__
+          </tbody>
+        </table>
+      </div>
+
+      <aside class="panel sidebar">
+        <h2 style="margin-top:0;">__FORM_TITLE__</h2>
+        __CANCEL_EDIT__
+        <form method="post" action="__FORM_ACTION__">
+          <input type="hidden" name="original_email" value="__EDIT_EMAIL__" />
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" value="__EDIT_EMAIL__" required />
+          </div>
+          <div class="field">
+            <label for="client_id">Client ID</label>
+            <input id="client_id" name="client_id" type="text" value="__EDIT_CLIENT_ID__" required />
+          </div>
+          <div class="field">
+            <label for="client_secret">Client Secret</label>
+            <input id="client_secret" name="client_secret" type="text" value="__EDIT_CLIENT_SECRET__" required />
+          </div>
+          <div class="field">
+            <label for="day_used">Créditos usados hoy</label>
+            <input id="day_used" name="day_used" type="number" min="0" step="1" value="__EDIT_DAY_USED__" required />
+          </div>
+          <div class="field">
+            <label for="month_used">Créditos usados este mes</label>
+            <input id="month_used" name="month_used" type="number" min="0" step="1" value="__EDIT_MONTH_USED__" required />
+          </div>
+          <button class="primary" type="submit">__SUBMIT_LABEL__</button>
+        </form>
+
+        <div class="footer">
+          <p>Los cambios se guardan en <code>adobe_accounts.json</code> y afectan al flujo de compresion inmediatamente.</p>
+          <p>Endpoint de consulta: <a href="/usage" target="_blank" rel="noreferrer">/usage</a></p>
+        </div>
+      </aside>
+    </section>
+
+    <section class="panel details-panel">
+      <h2 style="margin-top:0;">Detalle de uso por cuenta</h2>
+      <div class="details-grid">
+        __DETAIL_CARDS__
+      </div>
+    </section>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+  <script>
+    window.addEventListener("load", () => {
+      if (!window.gsap) return;
+
+      gsap.from(".hero", {
+        autoAlpha: 0,
+        y: 24,
+        duration: 0.65,
+        ease: "power3.out"
+      });
+
+      gsap.from(".metric", {
+        autoAlpha: 0,
+        y: 18,
+        duration: 0.55,
+        stagger: 0.08,
+        delay: 0.12,
+        ease: "power2.out"
+      });
+
+      gsap.from(".panel", {
+        autoAlpha: 0,
+        y: 18,
+        duration: 0.6,
+        stagger: 0.1,
+        delay: 0.2,
+        ease: "power2.out"
+      });
+
+      gsap.from(".account-detail", {
+        autoAlpha: 0,
+        y: 14,
+        duration: 0.45,
+        stagger: 0.06,
+        delay: 0.32,
+        ease: "power1.out"
+      });
+
+      document.querySelectorAll(".count-up").forEach((el) => {
+        const target = Number(el.dataset.count || "0");
+        const state = { value: 0 };
+        gsap.to(state, {
+          value: target,
+          duration: 1.1,
+          ease: "power2.out",
+          delay: 0.18,
+          onUpdate: () => {
+            el.textContent = Math.round(state.value).toString();
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

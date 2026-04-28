@@ -1,0 +1,22 @@
+{
+  "accounts": [
+    {
+      "email": "correo@ejemplo.com",
+      "clientId": "tu_client_id",
+      "clientSecret": "tu_client_secret",
+      "usage": {
+        "day": {},
+        "month": {}
+      }
+    },
+    {
+      "email": "correo2@ejemplo.com",
+      "clientId": "tu_client_id_2",
+      "clientSecret": "tu_client_secret_2",
+      "usage": {
+        "day": {},
+        "month": {}
+      }
+    }
+  ]
+}
